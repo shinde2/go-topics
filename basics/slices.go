@@ -3,6 +3,49 @@ package main
 import "fmt"
 
 // https://go.dev/blog/slices-intro
+// https://trstringer.com/golang-append/
+// https://trstringer.com/golang-slice-references/
+
+// when using append, if new values can be apended without
+// increasing capacity, then same underlying array is used
+// else new underlying array is created and new slice points to it
+func example2() {
+	x := make([]int, 3, 4)
+	y := append(x, 10)
+	fmt.Println(x)
+	y[0] = 5
+	fmt.Println(x, len(x), cap(x))
+	fmt.Println(y, len(y), cap(y))
+
+	u := make([]int, 3, 3)
+	v := append(u, 10)
+	fmt.Println(u)
+	v[0] = 5
+	fmt.Println(u, len(u), cap(u))
+	fmt.Println(v, len(v), cap(v))
+
+	fmt.Println("---------")
+
+	// uses same underlying array
+	a := make([]int, 3, 5)
+	b := append(a[2:3], 10)
+	fmt.Println(a, len(a), cap(a))
+	fmt.Println(b, len(b), cap(b))
+	fmt.Println("---------")
+
+	// its possible that large underlying array has only one slice
+	// referencing small part of it. Large array wont be GCed and
+	// this is memory inefficient.
+	// use copy to create new slice with new array
+	c := make([]int, 5)
+	d := make([]int, 2)
+	copy(d, c[1:3])
+	fmt.Println(c)
+	d[0] = 5
+	fmt.Println(c)
+	fmt.Println(d)
+
+}
 
 func example1() {
 
@@ -33,5 +76,6 @@ func example1() {
 }
 
 func main() {
-	example1()
+	//example1()
+	example2()
 }
