@@ -4,7 +4,14 @@ import "fmt"
 
 // https://go.dev/blog/slices-intro
 // https://trstringer.com/golang-append/
+
+// slice passing by value and reference
 // https://trstringer.com/golang-slice-references/
+/*
+   slices will be passed by values with same array.
+   new copy of slice will be created in the called func
+   so len and cap of slice in calling func is not changed
+*/
 
 // when using append, if new values can be apended without
 // increasing capacity, then same underlying array is used
