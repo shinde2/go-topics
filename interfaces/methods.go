@@ -3,10 +3,12 @@ package main
 import "fmt"
 
 /*
-	Allows object like access.
-	Functions with same name not allowed even if the signature is different.
-	Methods with same name are allowed if receivers are different types.
-	Mixing value and pointer receivers are allowed, GO will take care of dereferencing
+	- Allows object like access.
+	- Functions with same name not allowed even if the signature is different.
+	- Methods with same name are allowed if receivers are different types.
+	- Mixing value and pointer receivers are allowed, GO will take care of dereferencing.
+	- Definition of receiver type and method must be in the same package
+	  So for built in types an alias is needed, type newString string
 */
 
 type Person struct {
