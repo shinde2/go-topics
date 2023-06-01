@@ -27,6 +27,11 @@ func main() {
 		fmt.Println(val)
 	}
 
+	// implicit check for closed channel
+	//for val := range ch {
+	//	fmt.Println(val)
+	//}
+
 	// can not close closed channel
 	//close(ch)
 }
